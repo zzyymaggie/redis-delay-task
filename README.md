@@ -22,7 +22,7 @@
 ```
 DelayTaskConsumer参数解释：
 
-- 默认消息名称：robot:delay_task_queue，可以修改queue参数修改。
+- 默认消息名称：zzyymaggie:delay_task_queue，可以修改queue参数修改。
 - 默认轮询频率：500ms，可以通过delayInMillSeconds参数修改。
 - 默认从第0个开始消费1个元素返回，可以通过参数offset,limit参数修改。
 - 这里必须传入RedisTemplate<String,String>，因为一般我们初始化的RedisTemplate<String,Object> value采用json序列化的，这里需要RedisString序列化。
