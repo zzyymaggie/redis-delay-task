@@ -1,6 +1,6 @@
 package com.example.task.sdk;
 
-import com.sunlands.robot.task.DelayTaskProducer;
+import com.example.zzyymaggie.task.DelayTaskProducer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 

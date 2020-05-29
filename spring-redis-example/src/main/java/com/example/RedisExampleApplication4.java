@@ -1,8 +1,8 @@
 package com.example;
 
 import com.example.task.sdk.MessageListenerImpl;
-import com.sunlands.robot.task.DelayTaskConsumer;
-import com.sunlands.robot.task.DelayTaskProducer;
+import com.example.zzyymaggie.task.DelayTaskConsumer;
+import com.example.zzyymaggie.task.DelayTaskProducer;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
