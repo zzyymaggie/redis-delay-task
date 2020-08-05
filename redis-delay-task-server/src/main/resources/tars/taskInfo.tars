@@ -1,0 +1,14 @@
+module task
+{
+    struct TaskInfoReq
+    {
+        0 optional string msgBody;
+        1 optional string topic;
+        2 optional int interval;
+        3 optional long expiredTime;
+    };
+
+    interface Feedback {
+        int feedback(TaskInfoReq taskInfoReq, out string msg);
+    };
+};

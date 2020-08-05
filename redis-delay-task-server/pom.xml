@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>2.1.10.RELEASE</version>
+        <relativePath/> <!-- lookup parent from repository -->
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.example.zzyymaggie</groupId>
+    <artifactId>redis-delay-task-server</artifactId>
+    <version>1.0.0-SNAPSHOT</version>
+    <packaging>jar</packaging>
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <maven.compiler.source>1.8</maven.compiler.source>
+        <maven.compiler.target>1.8</maven.compiler.target>
+        <tarscloud.version>1.0.3-SNAPSHOT</tarscloud.version>
+        <tars.version>1.0.3</tars.version>
+    </properties>
+
+    <dependencies>
+        <!--必须放在spring-boot-starter-web的前面，否则会有兼容性问题 -->
+        <dependency>
+            <groupId>com.tencent.tars</groupId>
+            <artifactId>tars-client</artifactId>
+            <version>${tars.version}</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>com.alibaba</groupId>
+                    <artifactId>fastjson</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+
+        <!--redis-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-redis</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>fastjson</artifactId>
+            <version>1.2.61</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.example.zzyymaggie</groupId>
+            <artifactId>redis-delay-task-client</artifactId>
+            <version>1.0.0-SNAPSHOT</version>
+        </dependency>
+
+        <dependency>
+            <groupId>io.springfox</groupId>
+            <artifactId>springfox-swagger2</artifactId>
+            <version>2.2.2</version>
+        </dependency>
+
+        <dependency>
+            <groupId>io.springfox</groupId>
+            <artifactId>springfox-swagger-ui</artifactId>
+            <version>2.2.2</version>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+            <plugin>
+                <groupId>com.tencent.tars</groupId>
+                <artifactId>tars-maven-plugin</artifactId>
+                <version>1.0.3</version>
+                <configuration>
+                    <tars2JavaConfig>
+                        <!-- tars文件位置 -->
+                        <tarsFiles>
+                            <tarsFile>${basedir}/src/main/resources/tars/taskInfo.tars</tarsFile>
+                        </tarsFiles>
+                        <!-- 源文件编码 -->
+                        <tarsFileCharset>UTF-8</tarsFileCharset>
+                        <!-- 生成客户端代码 -->
+                        <servant>false</servant>
+                        <!-- 生成源代码编码 -->
+                        <charset>UTF-8</charset>
+                        <!-- 生成的源代码目录 -->
+                        <srcPath>${basedir}/src/main/java</srcPath>
+                        <!-- 生成源代码包前缀 -->
+                        <packagePrefixName>com.example.zzyymaggie.protocol</packagePrefixName>
+                    </tars2JavaConfig>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>2.19</version>
+                <configuration>
+                    <skip>true</skip>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+</project>
